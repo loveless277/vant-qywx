@@ -4,43 +4,56 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const routes = [
-  {
-    path: '*',
-    redirect: '/index'
-  },
-  {
-    name: 'index',
-    component: () => import('./view/index'),
-    meta: {
-      title: '应用中心'
+
+    {
+        path: '*',
+        redirect: '/index'
+    },
+    {
+        name: 'index',
+        component: () =>
+            import ('./view/index'),
+        meta: {
+            title: '应用中心'
+        }
+    },
+    {
+        name: 'user',
+        component: () =>
+            import ('./view/user'),
+        meta: {
+            title: '会员中心'
+        }
     }
-  },
-  {
-    name: 'user',
-    component: () => import('./view/user'),
-    meta: {
-      title: '会员中心'
-    }
-  }
 ]
 
 // add route path
 routes.forEach(route => {
-  route.path = route.path || '/' + (route.name || '')
+    route.path = route.path || '/' + (route.name || '')
 })
 
-const router = new Router({ routes })
+const router = new Router({
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return { x: 0, y: 0 }
+        }
+    },
+    mode: 'history',
+    routes
+})
 
 router.beforeEach((to, from, next) => {
-  const title = to.meta && to.meta.title
-  if (title) {
-    document.title = title
-  }
-  next()
+    const title = to.meta && to.meta.title
+    if (title) {
+        document.title = title
+    }
+    next()
 })
 
 export {
-  router
+    router
 }
 
 // export const asyncRouter = []
