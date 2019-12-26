@@ -1,5 +1,5 @@
 <template>
   <div>
-    应用中心
+    <div class="scanblock">扫描二维码</div>
   </div>
 </template>
