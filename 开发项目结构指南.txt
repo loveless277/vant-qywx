@@ -1,0 +1,8 @@
+modules    /workOrder 工单模块文件夹  
+里面结构和 /frame（机房相关模块） 保持一致：
+		相关页面文件放里面的views文件夹
+		路由放router
+		vuex放store
+		api接口请求放api
+
+*其他文件及文件夹如有不明请咨询谢谢 
