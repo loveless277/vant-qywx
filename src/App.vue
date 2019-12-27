@@ -16,14 +16,7 @@
       >
         机房
       </van-tabbar-item>
-      <van-tabbar-item
-        replace
-        to="/user"
-        icon="todo-list-o"
-      >
-        运维工单
-      </van-tabbar-item>
-      <van-tabbar-item :style="{color:(($route.path).substr(0,5))=='/home'?'#1989fa':''}" replace to="/home" icon="home-o"  info="9" >运维工单</van-tabbar-item>
+      <van-tabbar-item :style="{color:(($route.path).substr(0,5))=='/home'?'#1989fa':''}" replace to="/home" icon="todo-list-o" info="9" >运维工单</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
