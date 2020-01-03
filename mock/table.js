@@ -14,10 +14,11 @@ const count = 50
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: '@increment',
-    author: '@first',
+    name: '@first',
     title: '@title(5, 10)',
     'status|1': ['已审核', '未审核', '无需审核'],
     display_time: '@datetime',
+    date: '@increment',
     pageviews: '@integer(300, 5000)'
   }))
 }

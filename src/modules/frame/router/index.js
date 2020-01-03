@@ -12,6 +12,6 @@ export default [
     name: 'comroom',
     component: () => import('../view/comroom'),
     meta: {
-      title: '机房页'
+      title: '机房'
     }}
 ]

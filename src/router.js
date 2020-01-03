@@ -16,10 +16,10 @@ const routes = [
     }
   },
   {
-    name: 'user',
-    component: () => import('./view/user'),
+    name: 'mine',
+    component: () => import('./view/mine'),
     meta: {
-      title: '会员中心'
+      title: '我的信息'
     }
   }
 ]
@@ -29,7 +29,10 @@ routes.forEach(route => {
   route.path = route.path || '/' + (route.name || '')
 })
 
-const router = new Router({ routes })
+const router = new Router({
+  scrollBehavior: () => ({ y: 0 }),
+  routes
+})
 
 router.beforeEach((to, from, next) => {
   const title = to.meta && to.meta.title

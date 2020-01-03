@@ -8,5 +8,7 @@ require('echarts/lib/chart/bar')
 require('echarts/lib/component/tooltip')
 require('echarts/lib/component/title')
 
+require('echarts/lib/component/legend')
+
 require('echarts/theme/macarons') // 主题
 Vue.prototype.$echarts = echarts
