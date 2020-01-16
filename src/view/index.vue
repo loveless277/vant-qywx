@@ -25,22 +25,22 @@ export default {
         {
           icon: 'device',
           text: '查找设备',
-          path: ''
+          path: 'findEquip'
         },
         {
           icon: 'cabinet',
           text: '查找机柜',
-          path: ''
+          path: 'findCabinet'
         },
         {
           icon: 'mine',
           text: '我的信息',
-          path: '/mine'
+          path: 'mine'
         },
         {
           icon: 'check',
           text: '盘点',
-          path: ''
+          path: 'check'
         }
       ]
     }

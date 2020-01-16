@@ -9,12 +9,11 @@ import 'vant/lib/index.css'
 Vue.use(Vant)
 
 // element ui 表格
+import './plugins/element.js'
 import { Table, TableColumn } from 'element-ui'
-
 Vue.use(Table)
 Vue.use(TableColumn)
 
-import 'normalize.css/normalize.css'
 import '@/styles/index.scss' // global css
 import '@/icons' // icon
 import '@/components/NavBar' // mynavbar
@@ -27,9 +26,11 @@ Vue.prototype.wx = wx // 页面中可用this.wx 调用微信sdk接口
 
 // import '@/utils/qywxAPI.js'
 
-import { mockXHR } from '../mock'
+import request from '@/utils/request'
+window.request = request
 
-import './plugins/element.js'
+// mock
+import { mockXHR } from '../mock'
 if (process.env.NODE_ENV === 'production') {
   mockXHR()
 }

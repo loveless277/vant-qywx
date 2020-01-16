@@ -5,7 +5,8 @@
     <!-- 这里页面内容只是用来测试相关插件 -->
     <svg-icon icon-class="user" style="color:red"/>test
     <div ref="myChart" style="width:100%;height:300px;"/>
-    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+    <van-picker :columns="columns" show-toolbar @change="onChange" @confirm="onConfirm"/>
+    <!-- <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
       <van-list
         ref="list"
         v-model="loading"
@@ -16,8 +17,9 @@
       >
         <el-table
           :data="tableData"
-          fit
-          style="width: 100%">
+          :class="{'tb-fixed':isfixed}"
+          style="width: 100%"
+          fit>
           <el-table-column
             align="center"
             prop="date"
@@ -32,7 +34,7 @@
             label="地址"/>
         </el-table>
       </van-list>
-    </van-pull-refresh>
+    </van-pull-refresh> -->
   </div>
 </template>
 
@@ -55,7 +57,35 @@ export default {
       listQuery: {
         page: 1,
         limit: 10
+      },
+      isfixed: false
+    }
+  },
+  computed: {
+    date() {
+      var year = new Date().getFullYear()
+      var season = ['请选择', '第一季度', '第二季度', '第三季度', '第四季度']
+      const yearArr = ['请选择', year, year - 1, year - 2, year - 3, year - 4]
+      const obj = {}
+      for (let i = 0, j = yearArr.length; i < j; i++) {
+        const element = yearArr[i]
+        obj[element] = season
       }
+      return obj
+    },
+    columns() {
+      const column = this.date
+      return [
+        {
+          values: Object.keys(column).reverse(),
+          className: 'column1'
+        },
+        {
+          values: column[Object.keys(column)[0]],
+          className: 'column2',
+          defaultIndex: 0
+        }
+      ]
     }
   },
   created() {
@@ -67,6 +97,10 @@ export default {
   },
   mounted() {
     this.initCharts()
+    window.addEventListener('scroll', this.onScroll)
+    this.$on('hook:destroyed', () => {
+      window.removeEventListener('scroll', this.onScroll)
+    })
   },
   methods: {
     initCharts() {
@@ -135,7 +169,30 @@ export default {
       //     this.finished = true
       //   }
       // }, 500)
+    },
+    onScroll() {
+      if (window.scrollY >= 300) {
+        this.isfixed = true
+      } else {
+        this.isfixed = false
+      }
+    },
+    onConfirm(val) {
+      console.log(val)
+      if (val[0] === '请选择') {
+        this.$toast('请选择年份')
+      }
+      if (val[1] === '请选择') {
+        this.$toast('请选择季度')
+      }
+      if (val[0] === val[1]) {
+        this.$toast('请选择年份和季度')
+      }
+    },
+    onChange(picker, values) {
+      picker.setColumnValues(1, this.date[values[0]])
     }
   }
 }
 </script>
+

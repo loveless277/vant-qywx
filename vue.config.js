@@ -5,7 +5,8 @@ function resolve(dir) {
 
 module.exports = {
   outputDir: 'dist',
-  publicPath: process.env.NODE_ENV === 'production' ? '/vant-demo/' : './',
+  assetsDir: 'static',
+  publicPath: process.env.NODE_ENV === 'production' ? '/vant-demo/' : '/',
   devServer: {
     proxy: {
       // change xxx-api/login => mock/login

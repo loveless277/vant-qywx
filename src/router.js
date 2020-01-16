@@ -38,6 +38,8 @@ router.beforeEach((to, from, next) => {
   const title = to.meta && to.meta.title
   if (title) {
     document.title = title
+  } else {
+    document.title = '机房应用'
   }
   next()
 })

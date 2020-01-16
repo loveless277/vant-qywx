@@ -1,5 +1,5 @@
 <template>
-  <van-nav-bar :title="title" left-text="返回" left-arrow v-on="$listeners" @click-left="$router.back()"/>
+  <van-nav-bar :title="title" left-text="返回" left-arrow v-on="$listeners" @click-left="backPath==''?$router.back():$router.push(backPath)"/>
 </template>
 
 <script>
@@ -10,6 +10,10 @@ export default {
     titleName: {
       type: String,
       required: true
+    },
+    backPath: {
+      type: String,
+      default: ''
     }
   },
   computed: {
@@ -19,6 +23,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-</style>
